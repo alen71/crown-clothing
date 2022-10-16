@@ -1,7 +1,8 @@
 require('dotenv').config();
-const stripe = require('stripe')(`${process.env.STRIPE_SECRET_KEY}`);
 
-export async function handler(event) {
+const stripe = require('stripe')(process.env.REACT_APP_STRIPE_SECRET_KEY);
+
+exports.handler = async function (event) {
   try {
     const { amount } = JSON.parse(event.body);
 
@@ -23,4 +24,4 @@ export async function handler(event) {
       body: JSON.stringify({ error }),
     };
   }
-}
+};
